@@ -1,0 +1,63 @@
+import socket
+import os
+import platform
+
+print("*" * 28)
+print("Computer Tool Box")
+print("*" * 28)
+print()
+
+print("1. Computer Information")
+print("2. Network Information")
+print("3. Disk Information")
+print("4. Running Processes")
+print("5. Exit")
+print()
+
+#Computer name
+#Logged-in user
+#Windows version
+#CPU name
+
+def computer_info():
+    print("*" * 20)
+    print("Computer Information")
+    print("*" * 20)
+
+    hostname = socket.gethostname()
+    user = os.getlogin()
+    windows_version = platform.release()
+    cpu = platform.processor()
+    current_directory = os.getcwd()
+
+
+    print(f"Computer name:     {hostname}")
+    print(f"User:              {user}")
+    print(f"Windows Version:   {windows_version}")
+    print(f"CPU:               {cpu}")
+    print(f"Current Directory: {current_directory}")
+
+def network_info():
+    print("*" * 20)
+    print("Network Information")
+    print("*" * 20)
+
+    
+
+while True:
+    try:
+        user_input = int(input("Please pick a number "))
+        if 1 <= user_input <= 5:
+            break
+        else:
+            print("Please pick from the above selection.")
+    except ValueError:
+        print("Please pick from the above selection.")
+print()
+
+if user_input == 1:
+    computer_info()
+elif user_input == 2:
+    network_info()
+elif user_input == 5:
+    exit()
