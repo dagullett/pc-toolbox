@@ -1,35 +1,35 @@
 import socket
 import os
 import platform
+import time
+import psutil
 
-print("*" * 28)
-print("Computer Tool Box")
-print("*" * 28)
-print()
+def print_separator():
+    print("*" * 17)
 
-print("1. Computer Information")
-print("2. Network Information")
-print("3. Disk Information")
-print("4. Running Processes")
-print("5. Exit")
-print()
+def print_menu():
+    print_separator()
+    print("Computer Tool Box")
+    print_separator()
+    print()
 
-#Computer name
-#Logged-in user
-#Windows version
-#CPU name
+    print("1. Computer Information")
+    print("2. Network Information")
+    print("3. Disk Information")
+    print("4. Running Processes")
+    print("5. Exit")
+    print()
 
 def computer_info():
-    print("*" * 20)
+    print_separator()
     print("Computer Information")
-    print("*" * 20)
+    print_separator()
 
     hostname = socket.gethostname()
     user = os.getlogin()
     windows_version = platform.release()
     cpu = platform.processor()
     current_directory = os.getcwd()
-
 
     print(f"Computer name:     {hostname}")
     print(f"User:              {user}")
@@ -38,26 +38,60 @@ def computer_info():
     print(f"Current Directory: {current_directory}")
 
 def network_info():
-    print("*" * 20)
+    print_separator()
     print("Network Information")
-    print("*" * 20)
+    print_separator()
 
-    
+    interfaces = psutil.net_if_addrs()
 
-while True:
+    for interface_name, addresses in interfaces.items():
+        for address in addresses:
+                if address.family == socket.AF_INET:
+                    print(f"Adapter:      {interface_name}")
+                    print(f"Address IPv4: {address.address} ")
+                elif address.family == socket.AF_INET6:
+                    print(f"Address IPV6: {address.address}")
+                elif address.family == psutil.AF_LINK:
+                    print(f"Address MAC:  {address.address}")
+                    print()
+
+def disk_info():
+    print_separator()
+    print("Disk Information")
+    print_separator()
+
+    disks = psutil.disk_usage("C:\\")
+
+    print(f"Disk Total:   {disks.total / (1024 ** 3):.1f} GB")
+    print(f"Disk Used:    {disks.used / (1024 ** 3):.1f} GB")
+    print(f"Disk Free:    {disks.free / (1024 ** 3):.1f} GB")
+    print(f"Disk Percent: {disks.percent:.1f}  %")
+    print()                     
+
+def running_processes():
+    print_separator()
+    print("Running Processes")
+    print_separator()
+
+running = True
+while running:
+    print_menu()
     try:
         user_input = int(input("Please pick a number "))
-        if 1 <= user_input <= 5:
-            break
+        if user_input == 1:
+            computer_info()
+        elif user_input == 2:
+            network_info()
+        elif user_input == 3:
+            disk_info()
+        elif user_input == 4:
+            running_processes()
+        elif user_input == 5:
+            print("See you later!")
+            running = False
         else:
             print("Please pick from the above selection.")
+            time.sleep(3)
     except ValueError:
         print("Please pick from the above selection.")
-print()
-
-if user_input == 1:
-    computer_info()
-elif user_input == 2:
-    network_info()
-elif user_input == 5:
-    exit()
+        time.sleep(3)
