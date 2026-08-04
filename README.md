@@ -1,5 +1,7 @@
 # PC Toolbox v1.0
 
+<img width="205" height="198" alt="Screenshot 2026-08-04 113550" src="https://github.com/user-attachments/assets/53632c94-85a7-4bbb-8486-0b8d24497dbe" />
+
 My first completed Python project.
 
 This application displays useful Windows system information from a simple command-line menu.
