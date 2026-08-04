@@ -73,6 +73,16 @@ def running_processes():
     print("Running Processes")
     print_separator()
 
+    process_items = psutil.process_iter()
+
+    for process in process_items:
+        process_memory = process.memory_info().wset / (1024 ** 2)
+        if process_memory >= 100:
+            print(f"Process ID:          {process.pid}")
+            print(f"Process Name:        {process.name()}")
+            print(f"Process Memory:      {process_memory:.1f}")
+            print()
+
 running = True
 while running:
     print_menu()
