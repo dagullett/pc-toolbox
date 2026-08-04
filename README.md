@@ -15,6 +15,9 @@ This application displays useful Windows system information from a simple comman
 
 ## Requirements
 
+- Python 3.12+
+- psutil
+
 ## Installation
 
 1. Clone the repository:
@@ -34,10 +37,6 @@ pip install -r requirements.txt
 ```bash
 python pc_toolbox.py
 ```
-
-## Installation
-
-pip install -r requirements.txt
 
 ## Running
 
