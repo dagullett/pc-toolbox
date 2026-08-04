@@ -1,3 +1,32 @@
 # PC Toolbox v1.0
 
-My first ever completed coding project. This is a mini project testing different python capabilities utilizing functions and for loops. Also utilized built in libraries and downloaded psutil to get some additional functionality. I intend to update it over time as I learn more about Python.
+My first completed Python project.
+
+This application displays useful Windows system information from a simple command-line menu.
+
+## Features
+
+- Computer Information
+- Network Information
+- Disk Information
+- Running Processes
+
+## Requirements
+
+- Python 3.12+
+- psutil
+
+## Installation
+
+pip install -r requirements.txt
+
+## Running
+
+python pc_toolbox.py
+
+## Future Features
+
+- CPU Usage
+- Memory Usage
+- Network Statistics
+- Export Results
